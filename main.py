@@ -4,15 +4,17 @@ from bs4 import BeautifulSoup
 url = "http://www.madelinben.co.uk/"
 data = requests.get(url)
 
+print("Status: " + str(data.status_code))
+
 # pprint.pprint(data.content)
 
 soup = BeautifulSoup(data.content, "html.parser") # "html.parser" // "html5lib"
 
-""" src = "index.html"
+""" PARSE A DOCUMENT USING FILEHANDLER
+src = "index.html"
 with open(src) as f:
-    soup = BeautifulSoup(f, "html.parser") """
-
-
+    soup = BeautifulSoup(f, "html.parser")
+"""
 
 # FIND ELEMENTS BY ID
 projectSection = soup.find(id="project-container")

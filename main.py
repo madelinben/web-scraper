@@ -27,7 +27,10 @@ for projectContent in projectList:
     projectTitle = projectContent.find("h2", class_="project-title").text
     projectDesc = projectContent.find("p", class_="project-desc").text
 
-    if None in (projectTitle, projectDesc):
+    projectLink = projectContent.find("a", string=lambda text: "git" in text.lower())
+    projectSrc = projectLink["href"].strip()
+
+    if None in (projectTitle, projectDesc, projectLink):
         continue
 
-    print(projectTitle + " => " + projectDesc)
+    print(f"title= {projectTitle}\ndesc= {projectDesc}\nsrc= {projectSrc}\n")

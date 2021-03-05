@@ -9,8 +9,8 @@ data = requests.get(url)
 soup = BeautifulSoup(data.content, "html.parser") # "html.parser" // "html5lib"
 
 """ src = "index.html"
-with open(src) as fp:
-    soup = BeautifulSoup(fp, "html.parser") """
+with open(src) as f:
+    soup = BeautifulSoup(f, "html.parser") """
 
 
 
@@ -22,4 +22,12 @@ projectSection = soup.find(id="project-container")
 projectList = projectSection.find_all('div', class_="project-content")
 
 for projectContent in projectList:
-    print(projectContent, end="\n"*2)
+    # print(projectContent, end="\n"*2)
+
+    projectTitle = projectContent.find("h2", class_="project-title").text
+    projectDesc = projectContent.find("p", class_="project-desc").text
+
+    if None in (projectTitle, projectDesc):
+        continue
+
+    print(projectTitle + " => " + projectDesc)
